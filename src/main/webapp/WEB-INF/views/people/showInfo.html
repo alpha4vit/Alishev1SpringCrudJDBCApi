@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h3 th:text="${person.getName()}+', '+${person.getAge()}"></h3>
+<div th:if="${books.isEmpty()}">
+    <span>У данного посетителя нет книг</span>
+</div>
+<div th:if="${!books.isEmpty()}">
+    <div th:each="book : ${books}">
+        <span th:text="${book.getName()}"></span>
+    </div>
+</div>
+<br/>
+<hr/>
+<br/>
+<br/>
+<form th:action="@{/people/{id}/edit(id=${person.getId()})}">
+    <button>
+        Изменить
+    </button>
+</form>
+<br/>
+<form th:method="delete" th:action="@{/people/{id}(id=${person.getId()})}">
+    <input type="submit" value="Удалить!"/>
+</form>
+</body>
+</html>
